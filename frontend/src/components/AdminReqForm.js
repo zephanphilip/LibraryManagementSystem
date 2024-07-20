@@ -12,6 +12,7 @@ function AdminReqForm() {
   const [author, setAuthor] = useState('');
   const [publicationYear, setPublicationYear] = useState('');
   const [genre, setGenre] = useState('');
+  const [desc, setDesc] = useState('');
   const [isbn, setIsbn] = useState('');
   const [error, setError] = useState(null);
 
@@ -22,7 +23,7 @@ function AdminReqForm() {
       return;
     }
 
-    const workout = { serialNo,title,author,publicationYear,genre,isbn };
+    const workout = { serialNo,title,author,publicationYear,genre,desc,isbn };
 
     const response = await fetch('http://localhost:4000/api/workouts', {
       method: 'POST',
@@ -40,6 +41,7 @@ function AdminReqForm() {
       setAuthor('');
       setPublicationYear('');
       setGenre('');
+      setDesc('');
       setIsbn('');
       setError(null);
       console.log('New workout added', json);
@@ -105,6 +107,14 @@ function AdminReqForm() {
   label="Genre"
   value={genre}
   onChange={(e) => setGenre(e.target.value)}
+  variant="outlined"
+  fullWidth
+/>
+<TextField
+  required
+  label="Description"
+  value={desc}
+  onChange={(e) => setDesc(e.target.value)}
   variant="outlined"
   fullWidth
 />

@@ -162,6 +162,9 @@ const ViewBook = () => {
               <strong>Genre:</strong> {book.genre}
             </Typography>
             <Typography variant="body1">
+              <strong>Description:</strong> {book.desc}
+            </Typography>
+            <Typography variant="body1">
               <strong>ISBN:</strong> {book.isbn}
             </Typography>
             <Typography variant="body1">

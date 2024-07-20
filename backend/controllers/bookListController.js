@@ -22,19 +22,19 @@ const getBook = async (req, res) => {
 //post a workout
 
 const createBook = async (req, res) =>{
-const {serialNo,title,author,publicationYear,genre,isbn} = req.body;
+const {serialNo,title,author,publicationYear,genre,desc,isbn} = req.body;
 let user_id = req.user._id;
 let currentUser = "admin";
 const isAvailable = !user_id;
 // If user_id is not present, set it to admin
 
-console.log(serialNo,title,author,publicationYear,genre,isbn,isAvailable,currentUser);
+console.log(serialNo,title,author,publicationYear,genre,desc,isbn,isAvailable,currentUser);
 
 
 try {
     
 
-    const workout = await BookList.create({serialNo,title,author,publicationYear,genre,isbn,isAvailable,currentUser});
+    const workout = await BookList.create({serialNo,title,author,publicationYear,genre,desc,isbn,isAvailable,currentUser});
  
     
         res.status(200).json(workout)

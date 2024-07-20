@@ -21,7 +21,7 @@ const Signup = () => {
         <Box
             sx={{
                 display: 'flex',
-                height: '100vh',
+                height: '150vh',
                 overflow: 'hidden',
                 flexDirection: 'row',
                 '& img': {
