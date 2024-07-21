@@ -1,6 +1,22 @@
 const BookList = require('../models/bookListModel')
 const mongoose = require('mongoose');
 
+
+const multer = require('multer');
+
+
+// Set up multer for file uploads
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/');
+    },
+    filename: (req, file, cb) => {
+        cb(null, `${Date.now()}-${file.originalname}`);
+    }
+});
+
+const upload = multer({ storage });
+
 //get all workout
 const getBooks = async (req, res) =>{ 
     // const user_id = req.user._id
@@ -23,18 +39,19 @@ const getBook = async (req, res) => {
 
 const createBook = async (req, res) =>{
 const {serialNo,title,author,publicationYear,genre,desc,isbn} = req.body;
+const image = req.file ? req.file.path : null;
 let user_id = req.user._id;
 let currentUser = "admin";
 const isAvailable = !user_id;
 // If user_id is not present, set it to admin
 
-console.log(serialNo,title,author,publicationYear,genre,desc,isbn,isAvailable,currentUser);
+console.log(serialNo,title,author,publicationYear,genre,desc,isbn,isAvailable,currentUser,image);
 
 
 try {
     
 
-    const workout = await BookList.create({serialNo,title,author,publicationYear,genre,desc,isbn,isAvailable,currentUser});
+    const workout = await BookList.create({serialNo,title,author,publicationYear,genre,desc,isbn,isAvailable,currentUser,image});
  
     
         res.status(200).json(workout)
@@ -172,4 +189,4 @@ const getRentedBooks = async (req, res) => {
   };
 
 
-module.exports = {getBook,createBook,getBooks,deleteBook,updateBook,availableBook,unAvailableBook,unAvailableBookUser,getRentedBooks}
+module.exports = {getBook,createBook,getBooks,deleteBook,updateBook,availableBook,unAvailableBook,unAvailableBookUser,getRentedBooks, upload}

@@ -145,6 +145,19 @@ const ViewBook = () => {
     <ThemeProvider theme={theme}>
       <Container>
         <Paper>
+        {book.image && (
+          <img
+            src={`http://localhost:4000/${book.image}`}
+            
+            alt={book.title}
+            style={{
+              width: '100%',
+              maxWidth: '400px', // Set maximum width
+              height: 'auto', // Maintain aspect ratio
+              marginBottom: '16px',
+            }}
+          />
+        )}
           <Typography variant="h4" gutterBottom>
             {book.title}
           </Typography>

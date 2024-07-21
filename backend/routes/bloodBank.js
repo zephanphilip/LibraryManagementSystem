@@ -1,5 +1,5 @@
 const express = require('express');
-const { createBook,getBooks,getBook,deleteBook,updateBook,availableBook,unAvailableBook, unAvailableBookUser, getRentedBooks } = require('../controllers/bookListController');
+const { createBook,getBooks,getBook,deleteBook,updateBook,availableBook,unAvailableBook, unAvailableBookUser, getRentedBooks, upload } = require('../controllers/bookListController');
 const requireAuth = require('../middleware/requireAuth');
 
 const router = express.Router()
@@ -16,7 +16,7 @@ router.get('/rentedBooks',getRentedBooks);
 router.get('/:id',getBook);
 
 //post a workout
-router.post('/',createBook)
+router.post('/',upload.single('image'),createBook)
 
 // Approve a blood bank
 router.patch('/approve/:id', availableBook);

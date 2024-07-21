@@ -85,6 +85,19 @@ function AdminBbDetails({ bdetail }) {
         {bdetail.title}
       </Typography>
       <Box>
+      {bdetail.image && (
+          <img
+            src={`http://localhost:4000/${bdetail.image}`}
+            
+            alt={bdetail.title}
+            style={{
+              width: '100%',
+              maxWidth: '200px', // Set maximum width
+              height: 'auto', // Maintain aspect ratio
+              marginBottom: '16px',
+            }}
+          />
+        )}
         <Typography variant="body1" sx={{ mb: 1 }}>
           <strong>Serial No:</strong> {bdetail.serialNo}
         </Typography>

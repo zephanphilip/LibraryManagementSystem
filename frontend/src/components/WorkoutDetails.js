@@ -15,13 +15,26 @@ function WorkoutDetails({ bdetail }) {
   const handleViewBook = () => {
     navigate(`/viewbook/${bdetail._id}`);
   };
-
+  console.log(bdetail.image);
   return (
     <Paper elevation={3} sx={{ p: 2, mb: 2 }}>
       <Typography variant="h6" component="h4" gutterBottom>
         {bdetail.title}
       </Typography>
       <Box>
+      {bdetail.image && (
+          <img
+            src={`http://localhost:4000/${bdetail.image}`}
+            
+            alt={bdetail.title}
+            style={{
+              width: '100%',
+              maxWidth: '200px', // Set maximum width
+              height: 'auto', // Maintain aspect ratio
+              marginBottom: '16px',
+            }}
+          />
+        )}
         <Typography variant="body1">
           <strong>Serial No:</strong> {bdetail.serialNo}
         </Typography>

@@ -8,11 +8,15 @@ const mongoose = require('mongoose');
 const bloodBankRoutes = require('./routes/bloodBank');
 const userRoutes = require('./routes/user');
 
+const path = require('path');
 
 const app = express();
 
 // Enable CORS
 app.use(cors());
+
+// Serve static files from the 'uploads' folder
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 //middleware
